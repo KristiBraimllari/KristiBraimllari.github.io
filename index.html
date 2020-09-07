@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Braimllari</title>
+  <link rel="shortcut icon" type="image/x-icon" href="/Users/kristibraimllari/Desktop/Braimllari/favicon.svg" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="/j.js"></script>
+<meta name = "viewport"
+content ="width=device-width, initial-scale=0.1">
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      background-color: #white;
+      padding: 25px;
+    }
+ 
+  </style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+
+
+</head>
+<body>
+
+
+
+<div class="cursor"></div>
+<div class="cursor-follower"></div>
+
+<div class="header-top">
+  <div class="container">
+    <div class="container-innner">
+      <div class="row">
+        <div id="sp-menu-bottom" class="col-sm-6">
+          
+          <ul class="social-header-icon">
+            <li class="IG" >
+              <a target="_blank" class="link" href="https://www.instagram.com/bravisuals/">
+                <img src="/Users/kristibraimllari/Desktop/Braimllari/instagram.svg">
+              </a>
+            </li>
+            <li class="LINKEDIN">
+              <a target="_blank" class="link" href="https://www.linkedin.com/in/kristi-braimllari-802971193/">
+                <img src="/Users/kristibraimllari/Desktop/Braimllari/linkedin.svg">
+              </a>
+            </li>
+            <li class="DRIBBBLE">
+              <a target="_blank" class="link" href="https://www.dribbble.com/braimllari">
+                <img src="/Users/kristibraimllari/Desktop/Braimllari/dribbble-icon.svg">
+              </a>
+            </li>
+          </ul>
+        </div>
+          <div id="logo" class="col-sm-6">
+            <img src="/Users/kristibraimllari/Desktop/Braimllari/Logo.svg">
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+#svg {
+  max-width: 600px;
+  max-height: 600px;
+}
+
+#blob {
+  fill: #00D3D8;
+  fill: #00D3D8;
+}
+</style>
+<div class="jumbotron container" style="background: white">
+	<div class="header">
+  <div class="row">
+		
+    <div class="col-sm-6 blob">
+      <svg id="svg" viewBox="0 0 1000 1000">
+        <path id="blob"></path>
+      </svg>
+		</div>
+
+    <div class="col-sm-6">
+			<div class="text-block">
+				<h1>Hi, my name is Kristi</h1>      
+				<h2>Passionate UI/UX-er from Europe,always looking to tweak and bend the reality around me through life changing designs. <h2/>
+      </div>
+     </div>
+  </div>
+</div>
+
+
+
+		
+  
+<script>
+
+console.clear();
+var ct = 0;
+
+const hoverItem = document.querySelector(".jumbotron");
+
+const blob1 = createBlob({
+  element: document.querySelector("#blob"),
+  numPoints: 15,
+  centerX: 500,
+  centerY: 500,
+  minRadius: 350,
+  maxRadius: 450,
+  minDuration: .8,
+  maxDuration: .8
+});
+
+hoverItem.addEventListener("mouseenter", () => {
+  TweenMax.to(blob1.tl, 2, {
+    timeScale: .5,
+    onStart() {
+      blob1.tl.play();
+    }
+  });
+});
+
+hoverItem.addEventListener("mouseleave", () => {
+  TweenMax.to(blob1.tl, 2, {
+    timeScale: 0,
+    onComplete() {
+      blob1.tl.pause();
+    }
+  });
+});
+
+function createBlob(options) {
+  const points = [];
+  const path = options.element;
+  const slice = (Math.PI * 2) / options.numPoints;
+  const startAngle = random(Math.PI * 2);
+
+  const tl = new TimelineMax({
+    onUpdate: update,
+    paused: true
+  });
+
+  for (let i = 0; i < options.numPoints; i++) {
+    const angle = startAngle + i * slice;
+    const duration = random(options.minDuration, options.maxDuration);
+
+    const point = {
+      x: options.centerX + Math.cos(angle) * options.minRadius,
+      y: options.centerY + Math.sin(angle) * options.minRadius
+    };
+
+    const tween = TweenMax.to(point, duration, {
+      x: options.centerX + Math.cos(angle) * options.maxRadius,
+      y: options.centerY + Math.sin(angle) * options.maxRadius,
+      repeat: -1,
+      yoyo: true,
+      ease: Sine.easeInOut
+    });
+
+    tl.add(tween, -random(duration));
+    points.push(point);
+  }
+
+  options.tl = tl;
+  options.points = points;
+
+  tl.progress(1).progress(0).timeScale(0);
+  update();
+
+  function update() {
+    // console.log("UPDATE", ct++);
+    path.setAttribute("d", cardinal(points, true, 1));
+  }
+
+  return options;
+}
+
+// Cardinal spline - a uniform Catmull-Rom spline with a tension option
+function cardinal(data, closed, tension) {
+  if (data.length < 1) return "M0 0";
+  if (tension == null) tension = 1;
+
+  let size = data.length - (closed ? 0 : 1);
+  let path = "M" + data[0].x + " " + data[0].y + " C";
+
+  for (let i = 0; i < size; i++) {
+    let p0, p1, p2, p3;
+
+    if (closed) {
+      p0 = data[(i - 1 + size) % size];
+      p1 = data[i];
+      p2 = data[(i + 1) % size];
+      p3 = data[(i + 2) % size];
+    } else {
+      p0 = i == 0 ? data[0] : data[i - 1];
+      p1 = data[i];
+      p2 = data[i + 1];
+      p3 = i == size - 1 ? p2 : data[i + 2];
+    }
+
+    let x1 = p1.x + ((p2.x - p0.x) / 6) * tension;
+    let y1 = p1.y + ((p2.y - p0.y) / 6) * tension;
+
+    let x2 = p2.x - ((p3.x - p1.x) / 6) * tension;
+    let y2 = p2.y - ((p3.y - p1.y) / 6) * tension;
+
+    path += " " + x1 + " " + y1 + " " + x2 + " " + y2 + " " + p2.x + " " + p2.y;
+  }
+
+  return closed ? path + "z" : path;
+}
+
+function random(min, max) {
+  if (max == null) {
+    max = min;
+    min = 0;
+  }
+  if (min > max) {
+    var tmp = min;
+    min = max;
+    max = tmp;
+  }
+  return min + (max - min) * Math.random();
+}
+//-----------------------------------
+
+$(document).scroll(function (e) {
+  var scrollAmount = $(window).scrollTop();
+  var documentHeight = $(document).height();
+  var windowHeight = $(window).height();
+  var scrollPercent = (scrollAmount / (documentHeight - windowHeight)) * 100;
+  var roundScroll = Math.round(scrollPercent);
+  
+  // For scrollbar 1
+  $(".scrollBar1").css("width", scrollPercent + "%");
+  $(".scrollBar1 span").text(roundScroll);
+  
+  // For scrollbar 2
+  $(".scrollBar2").css("height", scrollPercent + "%");
+  $(".scrollBar2 span").text(roundScroll);
+});
+
+
+
+//-----------------------------------
+
+(function () {
+  $(document)
+    .on("mousemove", ".ItemCard", function (event) {
+      var halfW = this.clientWidth / 2;
+      var halfH = this.clientHeight / 2;
+
+      var coorX = halfW - (event.pageX - this.offsetLeft);
+      var coorY = halfH - (event.pageY - this.offsetTop);
+
+      var degX = (coorY / halfH) * 10 + "deg"; // max. degree = 10
+      var degY = (coorX / halfW) * -10 + "deg"; // max. degree = 10
+
+      $(this)
+        .css("transform", function () {
+          return (
+            "perspective( 600px ) translate3d( 0, -2px, 0 ) scale(1.1) rotateX(" +
+            degX +
+            ") rotateY(" +
+            degY +
+            ")"
+          );
+        })
+        .children(".ItemCard__summary")
+        .css("transform", function () {
+          return (
+            "perspective( 600px ) translate3d( 0, 0, 0 ) rotateX(" +
+            degX +
+            ") rotateY(" +
+            degY +
+            ")"
+          );
+        });
+    })
+    .on("mouseout", ".ItemCard", function () {
+      $(this)
+        .removeAttr("style")
+        .children(".ItemCard__summary")
+        .removeAttr("style");
+    });
+})();
+
+//------------------------------------- Kursori-------------------
+
+var cursor = $(".cursor"),
+    follower = $(".cursor-follower");
+
+var posX = 0,
+    posY = 0;
+
+var mouseX = 0,
+    mouseY = 0;
+
+TweenMax.to({}, 0.016, {
+    repeat: -1,
+    onRepeat: function () {
+        posX += (mouseX - posX) / 9;
+        posY += (mouseY - posY) / 9;
+
+        TweenMax.set(follower, {
+            css: {
+                left: posX - 12,
+                top: posY - 12
+            }
+        });
+
+        TweenMax.set(cursor, {
+            css: {
+                left: mouseX,
+                top: mouseY
+            }
+        });
+    }
+});
+
+$(document).on("mousemove", function (e) {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+});
+
+$(".link").on("mouseenter", function () {
+    cursor.addClass("active");
+    follower.addClass("active");
+});
+$(".link").on("mouseleave", function () {
+    cursor.removeClass("active");
+    follower.removeClass("active");
+});
+
+</script>
+
+
+
+<!-- 
+    <div class="col-sm-4">
+      
+      <img src="/Users/kristibraimllari/Desktop/Braimllari/1.png" class="img-responsive" style="width:80%" alt="Image">
+
+    </div> -->
+
+
+
+    <div class="container">
+ 
+  <div class="banka">
+  
+  <div class="row">
+    
+    <div class="col-sm-6">
+          <div class="project-content">          
+           <p>
+              <h1>ALPHA BANK REAL ESTATE</h1>
+              <h2>Connecting professionals  through selling properties.</h2>
+              <h3> A step towards increasing property sales. </h3>
+              <a class="btn-primary" href="inner.html">Check Out Project</a>
+            </p>  
+          </div>
+      
+      
+    </div>
+
+    <div class="ItemCard col-sm-6">
+        <a class="ItemCard__dest cover" href="https://alphabankprona.al/" target="_blank"></a>
+        <figure class="ItemCard__thumb">
+          <img src="/Users/kristibraimllari/Desktop/Braimllari/1.png"  class="img-responsive" alt="Image">
+        </figure>
+        <div class="ItemCard__layer cover"></div>
+        <div class="ItemCard__summary cover">
+          <span class="ItemCard__meta category">Visit Website</span>
+          <h2 class="ItemCard__title">ALPHA BANK PRONA</h2>
+          <address class="ItemCard__meta designer">K.B</address>
+        </div>
+      </div>
+
+  </div>
+
+
+</div>
+           
+
+
+
+            <div class="container">
+             
+                  <div class="banka2">
+              
+                       <div class="row">
+ 
+                  <div class="ItemCard col-sm-6">
+                       <a class="ItemCard__dest cover" href="https://www.levizalbania.al/en/" target="_blank"></a>
+                <figure class="ItemCard__thumb">
+               <img src="https://user-images.githubusercontent.com/69802920/92405596-3cdf0c00-f136-11ea-9560-4f523cb77457.png" class="img-responsive" alt="Image">
+              </figure>
+                  <div class="ItemCard__layer cover"></div>
+                 <div class="ItemCard__summary cover">
+               <span class="ItemCard__meta category">Visit Website</span>
+               <h2 class="ItemCard__title">Leviz Albania</h2>
+               <address class="ItemCard__meta designer">K.B</address>
+        </div>
+      </div>
+                          <div class="col-sm-6">
+                        <div class="project-content">          
+                           <p>
+                             <h1>LEVIZ ALBANIA</h1>
+                              <h2>Strengthening the local democracy.</h2>
+                              <h3> A step towards greater democracy </h3>
+                              <a class="btn-primary" href="#">Check Out Project</a>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+
+
+
+<div class="container">
+ 
+  <div class="banka3">
+  
+  <div class="row">
+    
+    <div class="col-sm-6">
+          <div class="project-content">          
+           <p>
+              <h1>VODAONE E-BUSINESS</h1>
+              <h2>Connecting professionals  through selling properties.</h2>
+              <h3> A step towards increasing property sales. </h3>
+           <a class="btn-primary" href="#">Check Out Project</a>
+           </p>  
+          </div>
+
+      
+      
+    </div>
+
+    <div class="ItemCard col-sm-6">
+        <a class="ItemCard__dest cover" href=# target="_blank"></a>
+        <figure class="ItemCard__thumb">
+          <img src="/Users/kristibraimllari/Desktop/Braimllari/3.png" class="img-responsive" alt="Image">
+        </figure>
+        <div class="ItemCard__layer cover"></div>
+        <div class="ItemCard__summary cover">
+          <span class="ItemCard__meta category">UnderConstruction</span>
+          <h2 class="ItemCard__title">Vodafone E-Business</h2>
+          <address class="ItemCard__meta designer">K.B</address>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- KTU -->
+
+                      
+
+                      <div class="container">
+             
+                  <div class="banka4">
+              
+                       <div class="row">
+ 
+                  <div class="ItemCard col-sm-6">
+                       <a class="ItemCard__dest cover" href="https://elements.envato.com/items/type/fonts/campfire-stories-font-duo-DH6LQG" target="_blank"></a>
+                <figure class="ItemCard__thumb">
+               <img src="/Users/kristibraimllari/Desktop/Braimllari/4.png" class="img-responsive" alt="Image">
+              </figure>
+                  <div class="ItemCard__layer cover"></div>
+                 <div class="ItemCard__summary cover">
+               <span class="ItemCard__meta category">Fonts</span>
+               <h2 class="ItemCard__title">Herbert Lemuel</h2>
+               <address class="ItemCard__meta designer">August10</address>
+        </div>
+      </div>
+                          <div class="col-sm-6">
+                        <div class="project-content">          
+                           <p>
+                             <h1>ALPHA BANK REAL ESTATE asd</h1>
+                              <h2>Connecting professionals  through selling properties.</h2>
+                              <h3> A step towards increasing property sales. </h3>
+                              <a class="btn-primary" href="#">Check Out Project</a>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+
+
+
+
+<div class="container">
+ 
+  <div class="banka5">
+  
+  <div class="row">
+    
+    <div class="col-sm-6">
+          <div class="project-content">          
+           <p>
+              <h1>Juth by Vodafone Albania</h1>
+              <h2>Connecting young generation together.</h2>
+              <h3> A step towards increasing property sales. </h3>
+           <a class="btn-primary" href="#">Check Out Project</a>
+           </p>  
+          </div>
+
+      
+      
+    </div>
+
+    <div class="ItemCard col-sm-6">
+        <a class="ItemCard__dest cover" href="https://juth.al/" target="_blank"></a>
+        <figure class="ItemCard__thumb">
+          <img src="/Users/kristibraimllari/Desktop/Braimllari/5.png" class="img-responsive" alt="Image">
+        </figure>
+        <div class="ItemCard__layer cover"></div>
+        <div class="ItemCard__summary cover">
+          <span class="ItemCard__meta category">Visit Website</span>
+          <h2 class="ItemCard__title">JUTH BY VODAFONE ALBANIA</h2>
+          <address class="ItemCard__meta designer">VODAFONE</address>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="container">
+             
+                  <div class="banka6">
+              
+                       <div class="row">
+ 
+                  <div class="ItemCard col-sm-6">
+                       <a class="ItemCard__dest cover" href="https://elements.envato.com/items/type/fonts/campfire-stories-font-duo-DH6LQG" target="_blank"></a>
+                <figure class="ItemCard__thumb">
+               <img src="/Users/kristibraimllari/Desktop/Braimllari/6.png" class="img-responsive" alt="Image">
+              </figure>
+                  <div class="ItemCard__layer cover"></div>
+                 <div class="ItemCard__summary cover">
+               <span class="ItemCard__meta category">Visit Website</span>
+               <h2 class="ItemCard__title">Coca-Cola Albania</h2>
+               <address class="ItemCard__meta designer">K.B</address>
+        </div>
+      </div>
+                          <div class="col-sm-6">
+                        <div class="project-content">          
+                           <p>
+                             <h1>Coca-Cola Albania Design Proposal</h1>
+                              <h2>Refreshing your body, your mind, your spirit with a Coca-Cola...</h2>
+                              <h3> A step towards increasing property sales. </h3>
+                              <a class="btn-primary" href="#">Check Out Project</a>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+
+            <div class="container">
+                   
+
+                   <div class="container">
+             
+                  <div class="KBPROFILE">
+              
+                       <div class="row">
+ 
+                  <div class="KBPROFILE col-sm-6">
+               <img src="/Users/kristibraimllari/Desktop/Braimllari/KB.png" class="img-responsive" alt="Image">
+              </figure>
+      </div>
+                    
+
+                    <div class="Hyrje">
+                    
+                    <div class="row">
+                      <div class="col-sm-12">
+                          <div class="Hyrje">
+
+                      <p>
+              <h1>Who Am I?</h1>
+              <h3>My name is Kristi Braimllari. I am 24 years old. I taught
+                  myself design at a young age, engraved my skills at Polis University graduating for Art&Design and since then I’ve been constantly expanding my skillset through working on freelance projects and more.</h3>
+                 <h1>Who Do I Work With?</h1>
+                  <h3>I offer a successful background from an ever growing, emerging digital advertising market, working 2 years with one of the biggest Telcos: Vodafone, generating media and public interest through creation and production of online campaigns, products and strategic communications.</h3>
+                <h1>Getting Started!</h1>
+                <h3>If you think that my experience and expertise makes for a good fit for your next project, don’t hesitate to shoot an email at <a href="mailto:braimllarikristi1@gmail.com">braimllarikristi1@gmail.com</a> </h3>
+                <h3>
+                If you aim to get things moving quickly, it would be preferable if you give me a summary of your project and what are you aiming to solve. I respond to all inquiries and ask the necessary questions such as the budget or the timeframe early on. Let’s talk!</h3>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div><br><br>
+
+<footer class="container-fluid text-center">
+  <div class="cursor"></div>
+<div class="cursor-follower"></div>
+
+<div class="header-top">
+  <div class="container">
+    <div class="container-innner">
+      <div class="row">
+        <div id="sp-menu-bottom" class="col-sm-12">
+
+
+
+
+
+          
+          <ul class="social-header-icon">
+            <li class="IG" >
+              <a target="_blank" class="link" href="https://www.instagram.com/bravisuals/">
+                <img src="/Users/kristibraimllari/Desktop/Braimllari/instagram.svg">
+              </a>
+            </li>
+            <li class="LINKEDIN">
+              <a target="_blank" class="link" href="https://www.linkedin.com/in/kristi-braimllari-802971193/">
+                <img src="/Users/kristibraimllari/Desktop/Braimllari/linkedin.svg">
+              </a>
+            </li>
+            <li class="DRIBBBLE">
+              <a target="_blank" class="link" href="https://www.dribbble.com/braimllari">
+                <img src="/Users/kristibraimllari/Desktop/Braimllari/dribbble-icon.svg">
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</footer>
+
+</body>
+</html>

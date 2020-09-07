@@ -1,0 +1,549 @@
+/* Container holding the image and the text */
+ /*
+.text-block {
+  position: relative;
+}
+
+/* Bottom right text */
+
+
+
+
+
+body{
+  cursor: none;
+}
+.text-block {
+  position: relative;
+  text-align: right;
+  bottom: -150px;
+  right: 120px;
+  width: 500px;
+  background-color: none;
+  color: black;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+.Hyrje > h1{
+    font-family: 'Reforma 1918 Negra';
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+    color:#4E4E4E;
+    font-size: 12px;
+    opacity: 50%;
+}
+.Hyrje > h3{
+    font-family: 'Reforma 1918 Blanca';
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+    color:#4E4E4E;
+    font-size: 21px;
+}
+
+/* Bottom right text */
+.blob {
+    position: relative;
+    text-align: right;
+    bottom: 30px;
+    right: -10px;
+    background-color: none;
+    color: black;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+
+.text-block {
+  position: relative;
+}
+
+.alphabank > h1 {
+
+    font-family: 'Reforma 1918 Negra';
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+    color:#4E4E4E;
+    font-size: 20px;
+}
+
+.alphabank > h2 {
+
+    font-family: 'Reforma 1918 Blanca';
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+    color:#4E4E4E;
+    font-size: 35px;
+}
+
+
+.alphabank > h3 {
+
+    font-family: 'Reforma 1918 Blanca';
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+    color:#4E4E4E;
+    font-size: 12px;
+}
+
+
+
+
+.text-block {
+  position: relative;
+}
+
+.text-block > h2 {
+        font-family: 'Reforma 1918 Blanca';
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+    color:#4E4E4E;
+    font-size: 30px;
+    margin-left: -330px;
+}
+
+.text-block > h1 {
+  font-family: 'Reforma 1918 Blanca';
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+    color:#4E4E4E;
+    font-size: 50px;
+    width: 500px;
+}
+
+.project-content {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.project-content > h2 {
+    font-family: 'Reforma 1918 Blanca';
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+    color:#4E4E4E;
+    font-size: 38px;
+}
+
+.project-content > h1 {
+    font-family: 'Reforma 1918 Blanca';
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+    color:#4E4E4E;
+    font-size: 16px;
+}
+
+.project-content > h3 {
+    font-family: 'Reforma 1918 Blanca';
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+    color:#4E4E4E;
+    font-size: 16px;
+
+
+
+
+}
+
+.btn-primary {
+  position: relative;
+  font-family: 'Reforma 1918 Blanca';
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+    font-size: 20px;
+  background: #FFFFFF;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.05), 0 11px 21px 0 rgba(0,0,0,0.05);
+  border-radius: 30px;
+  color: #4E4E4E;
+  margin: 0px;
+    margin-bottom: 10px;
+    padding: 15px 62px;
+    bottom: -31px;
+    background: url('/Users/kristibraimllari/Desktop/Braimllari/arrow-left.png');
+background-position:relative;
+background-position: 23px 21px;
+background-repeat:no-repeat;
+
+
+}
+
+
+/*.ItemCard__thumb img{
+  padding: 10px;
+}*/
+/*.banka {
+  padding-top: 320px;
+}
+
+.banka2 {
+  padding-top: 300px;
+}
+
+.banka3 {
+  padding-top: 300px;
+}
+
+.banka4 {
+  padding-top: 300px;
+}
+
+.banka5 {
+  padding-top: 300px;
+}
+
+.banka6 {
+  padding-top: 300px;
+}*/
+
+
+.header{
+  padding-top: 10px;
+  max-width: 1200px;
+}
+
+.social-header-icon {
+  list-style-type: none;
+  margin: 80px;
+  padding: 0px;
+  display: inline-flex;
+
+}
+
+.IG {
+  padding-right: 30px;
+}
+.LINKEDIN {
+  padding-right: 30px;
+}
+#logo{
+  position: relative;
+  top: 85px;
+  left: 245px;
+  max-width: 20%;
+}
+
+.pikpytje{
+  position: relative;
+}
+
+
+html {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+figure {
+  margin: 0;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+.ItemCard {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  cursor: pointer;
+  transition: transform 0.5s cubic-bezier(0.215, 0.61, 0.355, 1),
+    box-shadow 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transform: perspective(600px) translate3d(0, 0, 0);
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  align-items: center;
+  width:300px;
+  height: 500px;
+  margin-top: 30px;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 0px;
+}
+.ItemCard .cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.ItemCard__dest {
+  z-index: 30;
+  display: block;
+}
+.ItemCard__thumb {
+  position: relative;
+  z-index: 3;
+  padding: 0;
+  transition: transform 0.2s;
+}
+.ItemCard__thumb img {
+  display: block;
+  transition: box-shadow 0.2s;
+}
+.ItemCard__layer {
+  z-index: 10;
+  transition: opacity 1s cubic-bezier(0.215, 0.61, 0.355, 1);
+  opacity: 0;
+  background: #9d50bb;
+  background: rgb(69,249,255);
+  background: linear-gradient(180deg, rgba(69,249,255,1) 0%, rgba(0,211,216,1) 49%, rgba(0,121,147,1) 100%);
+}
+.ItemCard__summary {
+  z-index: 20;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  transform: perspective(600px) translate3d(0, 100%, 0);
+  text-align: center;
+  color: #fff;
+  justify-content: center;
+}
+.ItemCard__title {
+  margin: 8px 0;
+  font-weight: 900;
+  transform: translate3d(0, 150px, 50px);
+  text-transform: uppercase;
+  color: #fff;
+  font-size: 19px;
+  line-height: 1.48;
+}
+@media screen and (max-width: 1050px) {
+  .ItemCard__title {
+    font-size: 24px;
+  }
+}
+.ItemCard__meta.category {
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  transform: translate3d(0, 150px, 40px);
+  text-transform: uppercase;
+  color: white ;
+  font-size: 14px;
+}
+.ItemCard__meta.designer {
+  font-style: italic;
+  transform: translate3d(0, 150px, 20px);
+  font-size: 12px;
+}
+.ItemCard__meta.designer:before {
+  margin-right: 3px;
+  content: "by";
+}
+.ItemCard__title,
+.ItemCard__meta {
+  transition: transform 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.38);
+}
+/**
+ * Hover state
+ */
+.ItemCard:hover {
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+.ItemCard:hover .ItemCard__layer {
+  opacity: 0.9;
+}
+.ItemCard:hover .ItemCard__summary {
+  transform: translate3d(0, 0, 0);
+}
+.ItemCard:hover .ItemCard__title {
+  transform: translate3d(0, 0, 50px);
+}
+.ItemCard:hover .ItemCard__meta.category {
+  transform: translate3d(0, 0, 40px);
+}
+.ItemCard:hover .ItemCard__meta.designer {
+  transition-delay: 0.05s;
+  transform: translate3d(0, 0, 20px);
+}
+.ItemCard,
+.ItemCard__summary {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+
+
+
+body {
+  cursor: none;
+}
+
+.cursor {
+  position: fixed;
+  background-color: black;
+  width: 6px;
+  height: 6px;
+  border-radius: 100%;
+  z-index: 1;
+  transition: 0.3s cubic-bezier(0.75, -1.27, 0.3, 2.33) transform, 0.2s cubic-bezier(0.75, -0.27, 0.3, 1.33) opacity;
+  user-select: none;
+  pointer-events: none;
+  z-index: 10000;
+  transform: scale(1);
+}
+.cursor.active {
+  opacity: 0.5;
+  transform: scale(0);
+}
+.cursor.hovered {
+  opacity: 0.08;
+}
+
+.cursor-follower {
+  position: fixed;
+  background-color: grey;
+  opacity: 0.50;
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  z-index: 1;
+  transition: 0.6s cubic-bezier(0.75, -1.27, 0.3, 2.33) transform, 0.2s cubic-bezier(0.75, -0.27, 0.3, 1.33) opacity;
+  user-select: none;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(5px, 5px);
+}
+.cursor-follower.active {
+  opacity: 0.7;
+  transform: scale(3);
+}
+.cursor-follower.hovered {
+  opacity: 0.08;
+}
+
+
+
+
+
+:root {
+    // Try different transition timings
+    // for some interesting effects
+    
+    // --timing: cubic-bezier(0.705, 0.785, 0.555, 1.3);
+    // --timing: linear;
+    --timing: ease;
+}
+
+.scrollBar2 {
+  position: fixed;
+  top: 0;
+  right: 2vw;
+  height: 0%;
+  width: 10px;
+  background: #49e;
+  transition: height 200ms var(--timing);
+  text-align: right;
+  color: black;
+  display: flex;
+  align-items: center;
+  border-radius: 1em;
+  span {
+    position: absolute;
+    bottom: 3px;
+    left: 2px;
+    font-size: 0.7em;
+    font-weight: 500;
+    display: inline-block;
+    text-align: left;
+    -webkit-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+    -webkit-transform-origin: bottom right;
+    transform-origin: bottom left;
+    &::after {
+      content: "%";
+      font-size: 0.8em;
+      position: absolute;
+      right: -15px;
+      bottom: 4px;
+      font-weight: 700;
+      opacity: 0.4;
+    }
+  }
+}
+);
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #ccc;
+  > div {
+    position: absolute;
+    top: 35vh;
+    font-size: 2em;
+    display: block;
+    text-align: center;
+    width: 100vw;
+  }
+}
+
+.st0 {
+  fill: #ffffff;
+
+/* TRUPI */
+
+}
+body > div.jumbotron.container > div.container > div.banka{
+  padding-top: 80px;
+  margin-right: -200px;
+}
+body > div.jumbotron.container > div.container > div.container > div.banka2{
+  padding-top: 150px;
+  padding-left:170px;
+}
+body > div.jumbotron.container > div.container > div.container > div:nth-child(2) > div{
+  padding-top: 150px;
+  margin-right: -200px;
+}
+body > div.jumbotron.container > div.container > div.container > div:nth-child(3) > div.banka4{
+  padding-top: 150px;
+  padding-left:150px;
+}
+body > div.jumbotron.container > div.container > div.container > div:nth-child(3) > div:nth-child(2) > div{
+  padding-top: 150px;
+  margin-right: -200px;
+}
+body > div.jumbotron.container > div.container > div.container > div:nth-child(3) > div:nth-child(3) > div{
+  padding-top: 150px;
+  padding-left:130px;
+}
+body > div.jumbotron.container > div.container > div.container > div:nth-child(3) > div:nth-child(4) > div > div > div > div{
+  padding-top:150px;
+}
+
+
+/*TEKSTI TRUPIT*/
+body > div.jumbotron.container > div.container > div.banka > div > div:nth-child(1){
+  top: 140px;
+}
+body > div.jumbotron.container > div.container > div.container > div.banka2 > div > div:nth-child(2){
+  top: 140px;
+  left: 70px;
+}
+body > div.jumbotron.container > div.container > div.container > div:nth-child(3) > div.banka4 > div > div:nth-child(2){
+  top: 130px;
+  left: 60px;
+}
+body > div.jumbotron.container > div.container > div.container > div:nth-child(2) > div > div > div:nth-child(1){
+  top: 130px;
+  right: 30px;
+}
+body > div.jumbotron.container > div.container > div.container > div:nth-child(3) > div:nth-child(2) > div > div > div:nth-child(1){
+  top: 130px;
+  right: 30px;
+}
+body > div.jumbotron.container > div.container > div.container > div:nth-child(3) > div:nth-child(3) > div > div > div:nth-child(2){
+  top: 130px;
+  left: 60px;
+}
