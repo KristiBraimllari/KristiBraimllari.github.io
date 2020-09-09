@@ -168,7 +168,7 @@ body{
     margin-bottom: 10px;
     padding: 15px 62px;
     bottom: -31px;
-    background: url('/Users/kristibraimllari/Desktop/Braimllari/arrow-left.png');
+    background: url('https://user-images.githubusercontent.com/69802920/92615077-067fc900-f2bd-11ea-8ae0-31105c48f030.png');
 background-position:relative;
 background-position: 23px 21px;
 background-repeat:no-repeat;
@@ -547,3 +547,6 @@ body > div.jumbotron.container > div.container > div.container > div:nth-child(3
   top: 130px;
   left: 60px;
 }
+ body > div.jumbotron.container > div.container > div.container > div:nth-child(3) > div.Hyrje{
+  margin-top: 140px;
+ }
